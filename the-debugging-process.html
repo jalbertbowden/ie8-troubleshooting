@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>The Debugging Process &#45; Windows IE8 (Internet Explorer 8) Web Site Troubleshooting Guidance</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <header role="banner"><h1>The Debugging Process &#45; Windows IE8 (Internet Explorer 8) Web Site Troubleshooting Guidance</h1></header>
+      <div class="main" role="main">
+        <article role="article">
+          <section role="region">
+            <h1><a id="_Toc236665886">The Debugging Process</a></h1>
+            <h2><a id="_Toc236665887">Identify Problems Using Web SuperPreview or Windows Virtual PCs</a></h2>
+            <p>One of the quickest ways you can identify potential problems in a web page is using Web SuperPreview or Windows Virtual PCs. By opening any site and viewing side by side comparisons or overlaying one page over the other in Web SuperPreview, you can visually isolate any problem areas which exist. This is helpful when you are creating new web pages and would like to ensure they are compatible in all versions of Internet Explorer or when testing your current web pages for compatibility with Internet Explorer 8.</p>
+            <h2><a id="_Toc236665888">Isolating Problems Using Developer Tools</a></h2>
+            <p>Once a problem has been identified on a page the Developer Tools can be used to gather more information and reduce the problem size. </p>
+            <h2><a id="_Toc236665889">Determining and Setting the Document Compatibility Mode</a></h2>
+            <p>The first step when debugging any site in Internet Explorer 8 is identifying which document compatibility mode the page is rendered in. Document compatibility modes define how Internet Explorer should render the page and can be toggled by developers using an X-UA-Compatible header. Knowing the document compatibility mode informs us what set of rules Internet Explorer is abiding by and helps us to identify the cause of certain problems. </p>
+            <p>Internet Explorer 8 supports the following document compatibility modes:  Emulate IE8, Emulate IE7, IE5,  IE7, IE8, and Edge. The two Emulate modes use a pages DOCTYPE directive to determine how a page should be rendered. If a standard mode DOCTYPE is present, the page will be rendered using the mode specified (IE8 mode for  Emulate IE8 or  IE7 mode for Emulate IE7). If a quirks mode DOCTYPE directive is present, the page will be rendered in  IE5 mode for both Emulate modes.  IE5, IE7, and IE8 modes, however, will force the browser to render the specified mode regardless of the DOCTYPE directive. Lastly, Edge mode will force Internet Explorer to use the highest support for standards available. In most cases, users are strongly encouraged to use an Emulate document compatibility mode such as Emulate IE8 and  Emulate IE7 as these modes will not force pages normally rendered in quirks mode (such as framesets) into standards mode providing more comprehensive compatibility.</p>
+
+<img src="i/two-methods-to-determine-document-compatibility-mode-using-developer-tools-in-ie8.jpg" alt="Two Methods to Determine Document Compatibility Mode Using Developer Tools in IE8" />
+
+For more information regarding how document compatibility modes may affect your site and how you can implement them using an X-UA-Compatible header, you can visit MSDNs <a href="http://msdn.microsoft.com/en-us/library/cc288325(VS.85).aspx">Defining Document Compatibility</a> page or view available videos on the <a href="http://msdn.microsoft.com/en-us/ie/cc304683.aspx">How Do I Videos Internet Explorer 8</a> page.</p>
+
+            <p>Using the Developer Tools, we can quickly determine the document compatibility mode of a page using one of the following two methods:</p>
+            <ol>
+<li>Inspect the Document Mode option in the Developer Tools toolbar</li>
+<li>Click the Script tab and in the Console pane type <strong> javascript:alert(document.documentMode)</strong> in the script text box and click  Run Script. An alert will appear notifying what document mode the page is in.</li>
+            </ol>
+            <p>While the  Document Mode option informs us what document compatibility mode the page is finally rendered in, the  Browser Mode details which browser version Internet Explorer is emulating. Setting the Browser Mode to IE7 would define the user agent string (as Internet Explorer 7 in this case) to both the server and within the local script. Declaring the Emulate IE7 document compatibility mode through an X-UA-Compatible header only affects the document mode, so the user agent string remains unchanged, meaning any local scripts would be presented the Internet Explorer 8 UA value. Using the Developer Tools, developers can temporarily toggle different Browser and Document Modes and view their effects on their pages.</p>
+            <h2><a id="_Toc236665890">Digging into the Code Using the Developer Tools</a></h2>
+            <p>Some problems can be found and solved using the Developer Tools without the need of extensive updates to the original document. You can use the Developer Tools  Select Element by Click (Ctrl + B within the dev tools)
+alt="selectelementbyclick"
+src="windows-ie8-web-site-troubleshooting-guidance-09.2009-microsoft_files/image007.gif"
+
+<img src="i/select-element-by-click.gif" alt="Select Element By Click" />
+
+option to help locate problems within the HTML markup and then dynamically update the page within the browser. By inspecting the HTML markup within the Developer Tools you can see how it exists within Internet Explorer which often gives insight into why a part of the page does not render or behave correctly. The Developer Tools allow real time updates to text, styles, and attributes letting you view the changes without leaving the browser. </p>
+
+<p>The Developer Tools can also be used to debug scripts by enabling you to insert breakpoints, step through code, view locals, and add watch variables.</p>
+<p>For a detailed guide on all the features within the Developer Tools and how to utilize them, visit <a href="http://msdn.microsoft.com/en-us/library/dd565628(VS.85).aspx">Discovering Internet Explorer Developer Tools</a>.</p>
+<h2><a id="_Toc236665891">Reducing the Web Page</a></h2>
+<p>If the problem cannot be solved strictly using the Developer Tools it is often useful to reduce the web page. Reducing a web page removes as much unnecessary code as possible while still reproducing the problem. This process helps isolate where the problem occurs within the code, thus making the debugging process simpler. The steps below summarize the actions needed to reduce a web page:</p>
+<ol>
+<li>Create a local copy of the web page</li>
+<li>Strip away any parts of the web page that do not affect the problem</li>
+<li>Continue Step 2 until the web page contains minimal lines of code and no (or few) linked files while still reproducing the original problem.</li>
+</ol>
+<p>If you do not have access to the original files, you can save a local copy of the web page using Internet Explorer 8:</p>
+<ol>
+<li>Navigate to the page and wait for it to load completely</li>
+<li>Click Page &gt; Save As </li>
+<li>Change the >Save as type to >Webpage, complete(*.htm;*.html)</li>
+<li>Choose a location and file name</li>
+<li>Click the  Save button</li>
+</ol>
+<p>Sometimes when saving a copy of a web page all the necessary resources are not saved correctly. In this case and others when youd like to minimize the amount of local resources saved, you can use Fiddler to create a local copy of the web page and replace the remote request for the page with your local copy. This allows you to only save a copy of the files you need to edit without worrying about dependent resources.</p>
+<p>To replace a remote request using Fiddler:</p>
+<ol>
+<li>Start Fiddler and Internet Explorer 8. Once both programs open, navigate to the page you want to reduce.</li>
+<li>Fiddler will log all requests and responses, so within the Fiddler window find and highlight the webpage URL that you want to reduce or use Find Sessions (Ctrl + F).</li>
+<li>Right click on the correct row, select  Save &gt; Response &gt; Response Body , and save the file locally.</li>
+<li>In order for Fiddler to replace the requested copy with the local copy when the URL is accessed from Internet Explorer 8, you must create a rule. Click on the AutoResponder tab to access the current rules set for the URL row that you selected.</li>
+<li>Click the Add button and in the Rule Editor section at the bottom, click on the second dropdown menu and select Find a file.</li>
+<li>Select your local copy of the page and click the Save button to save the rule.</li>
+</ol>
+<p>Once a local copy of the web page has been created, you can again use the Developer Tools  Select Element by Click (Ctrl + B)
+
+<img src="windows-ie8-web-site-troubleshooting-guidance-09.2009-microsoft_files/image007.gif" alt="selectelementbyclick" />
+option to help locate the problem in the code. Then, using your favorite HTML editor begin to remove unnecessary HTML from the
+<pre><code>
+&lt;body&gt; section as well as any extraneous
+ &lt;script&gt;,  
+&lt;meta&gt;, and  &lt;link&gt;
+</pre></code>
+tags in the  &lt;head&gt; section. It is often best to start at the top most parent node of the element in question and remove code above and below it. Be sure to constantly save after each reduction step and verify that the problem still exists. If at any time the problem disappears, undo the last change and either remove a smaller section of code or begin to reduce a different part of the page.</p>
+<p>Below are some helpful guidelines while reducing a web page:</p>
+<ul>
+ <li>Many HTML editors such as <a href="http://www.microsoft.com/expression/products/Web_Overview.aspx">Expression Web</a> and <a href="http://www.microsoft.com/visualstudio/en-us/default.mspx">Visual Studio</a> have features such as HTML tidying which reformat the code, making it easier to read.</li>
+<li>Always remove matching start and end tags, ensuring that the pages hierarchy remains intact.</li>
+<li>Be sure to remove any unneeded properties within tags by reducing them to their base element. For example, reduce > 
+&lt;tr style=&quot;padding: 25px;&quot; id=&quot;elemID&quot;
+&gt; to just >&lt;tr&gt;.</li>
+<li>If any &lt;script&gt; or &lt;link&gt; tags have source files which are needed to reproduce the problem, copy their source into the web page and continue the reduction process. Many bugs are caused by CSS or scripting and reducing these files as far as possible can help isolate the root cause of the problem.</li>
+</ul>
+<h2><a id="_Toc236665892">More Debugging Resources</a></h2>
+<p>For more information regarding designing, testing, and debugging for Internet Explorer 8 including the use of Developer Tools and web page reduction see the <a href="http://msdn.microsoft.com/en-us/library/cc848857(VS.85).aspx">Internet Explorer 8 Compatibility Test Guide</a>.</p>
+<h2><a id="_Toc236665893">Solving the Problem</a></h2>
+<p>Once you have located the source of the problem using the Developer Tools and by reducing the page, inspect the code and try to determine the cause of the problem. Many resources exist such as <a href="http://blogs.msdn.com/ie/archive/2009/03/12/site-compatibility-and-ie8.aspx">Site Compatibility and Internet Explorer 8</a> which detail common compatibility problems and how to resolve them. Often times youll find the source of your problem can be traced to one of these common issues.</p>
+          </section>
+        </article>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>

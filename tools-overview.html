@@ -1,0 +1,75 @@
+
+<h1><a name="_Toc236665881">Learn to Troubleshoot Internet Explorer 8
+Compatibility Issues from the Internet Explorer Team</a></h1>
+
+<p class=MsoNormal>Internet Explorer 8 introduces many new features and
+capabilities, such as Accelerators and Web Slices for Web developers to build
+powerful customer experiences. Along
+with those new features, Internet Explorer 8 includes an entirely new standards
+based rendering and layout engine. In
+addition, a new, faster JScript engine was added to Internet Explorer 8.
+ While this new platform provides Web
+developers the ability to write to standards and have their code work in all
+major browsers, the changes can cause issues with previous Internet Explorer
+versions that are still in use today.</p>
+
+<p class=MsoNormal>The focus of this document is to provide a few real world
+examples (without site or company attribution) of issues the Internet Explorer
+team has run into helping customers fix issues with their Web sites. Instead of
+simply providing best practice guidance (code to standards!) or a list of
+issues to avoid, this document is designed to give you an understanding of the
+process the Internet Explorer team themselves use internally at Microsoft to
+troubleshoot and resolve application compatibility issues, both for customer
+Web sites and internet line of business applications.</p>
+
+<h1><a name="_Toc236665882">Tools Overview</a></h1>
+
+<p class=MsoNormal>Throughout this document, we will use a set of tools to help
+simplify the debugging process. Below is a quick overview of some of the tools.</p>
+
+<h2><a name="_Toc236665883">Developer Tools</a></h2>
+
+<p class=MsoNormal>Internet Explorer 8 comes equipped with a set of developer
+tools which empower you to quickly inspect your sites HTML, Cascading Style
+Sheets (CSS), JavaScript, and Document Object Model (DOM) tree as they exist in
+Internet Explorer. This is especially helpful when debugging dynamic sites such
+as those which utilize frameworks.</p>
+
+<p class=MsoNormal>Accessing the developer tools is simple: 
+press F12 while viewing a page or select 
+Developer Tools</b> from the 
+Tools</b> menu.</p>
+
+<h2><a name="_Toc236665884">Web SuperPreview &amp; Windows Virtual PCs</a></h2>
+
+<p class=MsoNormal>Web SuperPreview is a visual debugging tool which helps you
+migrate web sites from earlier versions of Internet Explorer. Through the use
+of side by side comparisons or an onion-skin overlay, you can quickly identify
+differences in a layout rendered in various versions of Internet Explorer by
+using rulers, guides, and zoom/pan tools. You can obtain Web SuperPreview at
+the <a
+href="http://www.microsoft.com/downloads/details.aspx?displaylang=en&amp;FamilyID=8e6ac106-525d-45d0-84db-dccff3fae677">Microsoft
+Download Center</a>.</p>
+
+<p class=MsoNormal>Alternatively, Windows Virtual PCs can be used to emulate
+different environments within Windows. Using multiple Windows Virtual PCs, you
+can view side by side how a website is rendered within Windows XP, Vista, or
+other installations running Internet Explorer 6, 7, and 8 without the use of
+multiple machines. Visit the <a
+href="http://www.microsoft.com/windows/virtual-pc/default.aspx">Windows Virtual
+PC website</a> to obtain a copy. </p>
+
+<h2><a name="_Toc236665885">Fiddler</a></h2>
+
+<p class=MsoNormal>Fiddler is a useful tool often used by the Internet Explorer
+team which captures traffic between the Internet and your computer. It allows
+for inspection of both incoming and outgoing data and can be used to monitor
+and fiddle with requests and responses before they are received by the
+browser. Built by a Microsoft developer, Fiddler includes a powerful event-based
+scripting subsystem and can be extended using any .NET language. 
+</p>
+
+<p class=MsoNormal>Fiddler is available for free as an <a
+href="http://www.ieaddons.com/en/details/other/Microsoft_Fiddler/">Internet
+Explorer add-on</a>.</p>
+
